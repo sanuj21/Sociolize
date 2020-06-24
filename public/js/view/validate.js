@@ -135,21 +135,26 @@ export const validateEditProfile = el => {
 
           // SUCCESS MEANS, USERNAME EXIST
           if (res.data.status === 'success') {
-            return toggleInputError(
+            toggleInputError(
               el,
               true,
               'Sorry!! This Username is already taken'
             );
+            return false;
           } else {
-            return toggleInputError(
+            toggleInputError(
               el,
               false,
               'Congress!!! Username available!!',
               true
             );
+
+            return true;
           }
         }
         toggleInputError(el, false);
+
+        return false;
       }
     } catch (err) {
       customAlert.alertPrimary(err.response.data.message);

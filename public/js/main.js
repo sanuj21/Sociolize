@@ -206,23 +206,16 @@ import { autoSizeTextarea } from './util/utilBase';
   // END OF GOOGLE SIGN
 
   // HANDLING FORM SIGNUP
-  if (
-    baseView.DOMElements.formSignup &&
-    Array.from(baseView.DOMElements.modalSignUp.classList).includes(
-      'modal--show'
-    )
-  ) {
-    baseView.DOMElements.inputs.forEach(el => {
-      el.addEventListener('keyup', validate.validateEditProfile(el));
-    });
+  if (baseView.DOMElements.formSignup) {
+    baseView.DOMElements.inputUsername.addEventListener(
+      'keyup',
+      validate.validateEditProfile(baseView.DOMElements.inputUsername)
+    );
 
     baseView.DOMElements.formSignup.addEventListener('submit', async e => {
       e.preventDefault();
-      const st = authenticate.editProfile(
-        baseView.DOMElements.inputUsername.value,
-        null,
-        null,
-        gToken
+      const st = validate.validateEditProfile(
+        baseView.DOMElements.inputUsername.value
       );
       if (st) {
         await authenticate.signup(
@@ -242,15 +235,17 @@ import { autoSizeTextarea } from './util/utilBase';
   }
 
   // SHOW WELCOME IF ITS FIRST TIME
-  if (!localStorage.getItem('welcome')) {
-    baseView.DOMElements.modalWelcome.classList.add('modal--show');
-    baseView.DOMElements.body.classList.add('modal--show__body');
-  }
+  if (baseView.DOMElements.modalWelcome) {
+    if (!localStorage.getItem('welcome')) {
+      baseView.DOMElements.modalWelcome.classList.add('modal--show');
+      baseView.DOMElements.body.classList.add('modal--show__body');
+    }
 
-  // CLOSE WELCOME, IF CLICKED ON OK
-  baseView.DOMElements.modalWelcomeClose.addEventListener('click', () => {
-    baseView.DOMElements.modalWelcome.classList.remove('modal--show');
-    baseView.DOMElements.body.classList.remove('modal--show__body');
-    localStorage.setItem('welcome', 'true');
-  });
+    // CLOSE WELCOME, IF CLICKED ON OK
+    baseView.DOMElements.modalWelcomeClose.addEventListener('click', () => {
+      baseView.DOMElements.modalWelcome.classList.remove('modal--show');
+      baseView.DOMElements.body.classList.remove('modal--show__body');
+      localStorage.setItem('welcome', 'true');
+    });
+  }
 })();

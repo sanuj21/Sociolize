@@ -2,6 +2,7 @@ import axios from 'axios';
 import * as baseView from '../view/baseView';
 import * as validate from '../view/validate';
 import * as customAlert from '../view/customAlert';
+import * as utilBase from '../util/utilBase';
 
 // LOGIN WITH EMAIL AND PASSWORD
 export const login = async (email, password) => {
@@ -51,11 +52,14 @@ export const signup = async (gToken, username) => {
       data = { gToken };
     }
 
+    utilBase.showLoader(baseView.DOMElements.modalForLoader, true);
     const res = await axios({
       method: 'POST',
       url: '/api/v1/users/loginWithG',
       data: data
     });
+
+    utilBase.removeLoader(baseView.DOMElements.modalForLoader, true);
 
     if (res.data.status === 'success') {
       customAlert.showToastNotification('Login Successfully!!');
@@ -71,20 +75,10 @@ export const signup = async (gToken, username) => {
 };
 
 // EDITING PROFILE OF USER
-export const editProfile = async (username, name, bio, gToken) => {
+export const editProfile = async (username, name, bio) => {
   baseView.DOMElements.inputs.forEach(el => {
     validate.validateEditProfile(el)();
   });
-
-  if (gToken) {
-    if (
-      baseView.DOMElements.formSignup.querySelector(
-        '.form__field__errorValidation'
-      )
-    ) {
-      return false;
-    }
-  }
 
   // IF THERE ARE ANY ELEMENT HAVING CLASS ERRORVALIDATION, THAN IT MEANS THE VALIDATION HAS FAILED
   if (
@@ -96,6 +90,7 @@ export const editProfile = async (username, name, bio, gToken) => {
   }
 
   // HERE MEANS, VALIDATION SUCCEEDED
+  utilBase.showLoader(baseView.DOMElements.modalForLoader, true);
   try {
     const res = await axios({
       method: 'PATCH',
@@ -106,6 +101,8 @@ export const editProfile = async (username, name, bio, gToken) => {
         bio
       }
     });
+
+    utilBase.removeLoader(baseView.DOMElements.modalForLoader, true);
 
     if (res.data.status === 'success') {
       customAlert.showToastNotification('Profile Updated Successfully!!');
