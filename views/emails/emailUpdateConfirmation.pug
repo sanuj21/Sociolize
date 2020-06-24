@@ -1,0 +1,17 @@
+extend baseEmail
+
+block content 
+    p We have got a request to change your email. Please Click on the link below to confirm!!
+    table.btn.btn-primary(role='presentation', border='0', cellpadding='0', cellspacing='0')
+      tbody
+        tr
+          td(align='left')
+            table(role='presentation', border='0', cellpadding='0', cellspacing='0')
+              tbody
+                tr
+                  td
+                    a(href=`${url}`, target='_blank') Confirm Email
+    
+    p= `If the button above doesn't work, than click here : ${url}`
+    p If you need any help!! Please don't hesisate to contact us!!
+    p - Anuj Sharma, Developer

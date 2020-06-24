@@ -1,0 +1,81 @@
+extends base
+
+block content
+  // NAVIGATION
+  nav.nav
+    //- .nav__logo.nav__logo--icon
+    //-   img(src='logos/logo.svg')
+    .nav__logo.nav__logo--text
+      img(src='logos/logo__text.svg')
+      //
+        <svg class="nav__logo__img">
+        <use xlink:href="logos/logo__text.svg"></use>
+        </svg>
+    .nav__user
+      a(href = "/myProfile")
+        -if(user && user.photo)
+          img.nav__user__img(src = `/images/users/${user.photo}`)
+        -else 
+          svg.nav__user__img
+            use(xlink:href='icons/sprite.svg#icon-account_circle')
+  // #############################
+  // LOGIN FORM
+  .formWrapper
+    .heading.heading--primary
+      | Login
+    form.form.form--login
+      .form__field
+        label.form__field__label Email
+        input.form__field__input.inputEmail(type='text')
+      .form__field
+        label.form__field__label Password
+        .form__field__password
+          input.form__field__input.inputPassword(type='password')
+          span.form__field__password__toggleBtn
+            svg.form__field__password__toggleBtn__svg
+              use(xlink:href='icons/sprite.svg#icon-visibility_off')
+      .form__field
+        input.form__field__submit.btn.btn--primary(type='submit' value='Login')
+      .form__field.form__field--or
+        | OR
+      .form__field
+        .gSignInWrapper
+          #customBtn.customGPlusSignIn
+            img.img--google(src = "/logos/google__icon.svg")
+            span.buttonText Sign In With Google
+
+  // SIGNUP FORM MODAL
+  .modal.modal-signup
+    .modal-signup__content
+      .modal-signup__header.modal__header
+        svg.modal__header__backBtn
+          use(xlink:href='icons/sprite.svg#icon-keyboard_backspace')
+        span.modal__header__text Welcome
+      form.form.form--signup
+        .form__field
+          input.form__field__input.form__field__input--username(type='text' placeholder='Choose a username')
+        .form__field
+          input.form__field__submit.btn.btn--primary(type='submit' value='Proceed')
+
+
+  .modal.modal-welcome
+    .modal-welcome__content
+      .modal-welcome__header
+        h2.modal-welcome__header__heading
+          span.modal-welcome__header__heading__first Hello
+          span.modal-welcome__header__heading__last Welcome
+      .modal-welcome__body
+        .modal-welcome__body__heading
+          | Greetings from 
+          span.modal-welcome__body__heading__brand sociolize!
+        .modal-welcome__body__para
+          | This is a basic social media web app build with Nodejs, MongoDB
+          | and offcourse Javascript for frontend part. By Default, you will be following the developer.
+          br
+          | Please click on OK to continue..
+      .modal-welcome__footer
+        .modal-welcome__close
+          .modal-welcome__close__btnOk
+            | OK
+
+        

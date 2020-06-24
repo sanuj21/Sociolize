@@ -1,0 +1,39 @@
+.userInfoBasic {
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+
+  border-bottom: 0.1rem dashed $color-grey-light-5;
+
+  & > * {
+    &:not(:first-child) {
+      margin-left: 1rem;
+    }
+  }
+
+  &__photo {
+    width: 4.5rem;
+    height: 4.5rem;
+
+    border-radius: 50%;
+    &--icon {
+      fill: $color-default;
+    }
+  }
+
+  &__info {
+    margin-right: auto;
+    // margin-left: 1rem;
+    &__username {
+    }
+
+    &__name {
+      color: $color-grey-dark-3;
+    }
+  }
+
+  &__action {
+    &__follow {
+    }
+  }
+}

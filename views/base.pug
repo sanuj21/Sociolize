@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title #{title}
+    meta(name = "viewport" content = "width=device-width, initial-scale=1.0")
+    script(src="https://apis.google.com/js/api:client.js")
+    link(href = "https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap"
+      rel = "stylesheet")
+
+    link(rel = "stylesheet" href = "/css/style.css")
+
+    // ##FEVICON
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/fevicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/fevicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/fevicon/favicon-16x16.png">
+    <link rel="manifest" href="/icons/fevicon/site.webmanifest">
+
+    body(data-userid=`${user ? user.id : ''}`)
+      // HEADER
+      include _header
+
+      .container
+        // CONTENT
+        block content
+
+      // FOOTER
+      include _footer
+
+
+    script(src = "/js/bundle.js")
+
+

@@ -1,0 +1,27 @@
+.nav-public {
+  padding-top: 0.8rem;
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+
+    &__item {
+      &:first-child {
+        display: flex;
+        align-items: center;
+      }
+
+      &__svg {
+        width: 2.5rem;
+        height: 2.5rem;
+        fill: $color-default-dark;
+      }
+    }
+  }
+
+  &__username {
+    display: inline-block;
+    margin-left: 1rem;
+    color: $color-default-dark;
+  }
+}

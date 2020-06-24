@@ -1,0 +1,9 @@
+.heading {
+  font-size: $text-size-large;
+  font-weight: 500;
+}
+
+.heading--primary {
+  text-transform: uppercase;
+  color: $color-primary;
+}

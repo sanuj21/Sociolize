@@ -1,0 +1,44 @@
+extend base
+
+block content
+
+  // NAV SECONDARY
+  .nav-secondary.row
+    .nav-secondary__list
+      .nav-secondary__list__item
+        svg.nav-secondary__list__item__svg
+          use(xlink:href='icons/sprite.svg#icon-keyboard_backspace')
+        .nav-secondary__user
+          img.nav-secondary__user__photo(src='images/users/sushant.jpeg')
+          span.nav-secondary__user__name anuj21
+      .nav-secondary__list__item
+        svg.nav-secondary__list__item__svg
+          use(xlink:href='icons/sprite.svg#icon-more_vert')
+  // #############################
+  // MESSAGES
+  .messages__wrapper
+    .messages.messages--userOne.row
+      .messages__item.messages__item--userOne
+        .messages__item__value.messages__item__value--userOne
+          | Hello!!
+      .messages__item.messages__item--userOne
+        .messages__item__value.messages__item__value--userOne
+          | Anuj
+    .messages.messages--userTwo.row
+      .messages__item.messages__item--userTwo
+        .messages__item__value.messages__item__value--userTwo
+          | Hii!!
+      .messages__item.messages__item--userTwo
+        .messages__item__value.messages__item__value--userTwo
+          | How are you ? Hope you are fine
+  // #############################
+  // CHAT INPUT BOX
+  .chatInput.row
+    .chatInput__attachIcon
+      svg.chatInput__attachIcon__svg
+        use(xlink:href='icons/sprite.svg#icon-attach_file')
+    input.chatInput__input(type='text' placeholder='Type a message')
+    .chatInput__sendIcon
+      svg.chatInput__sendIcon__svg
+        use(xlink:href='icons/sprite.svg#icon-paper-plane')
+  // #############################

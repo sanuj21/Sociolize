@@ -1,0 +1,97 @@
+extends base
+
+block content 
+
+  -if(userPublic) 
+    -currentUser = user; 
+    -user = userPublic;  
+
+  // NAV SECONDARY
+  .nav-secondary.row
+    .nav-secondary__list
+      .nav-secondary__list__item
+        a.nav-secondary__list__item__link(href = "/")
+          svg.nav-secondary__list__item__svg.navBtn__previousPage
+            use(xlink:href='/icons/sprite.svg#icon-keyboard_backspace')
+        .nav-secondary__user= user.username
+
+      .nav-secondary__list__item
+        a.btn--signOut Sign out
+  // #############################
+  // PROFILE INFO
+  .profile(data-userid = `${userPublic ? userPublic._id : ''}`)
+    .profile__pic
+      -if(user.photo)
+        img.profile__pic__img(src=`/images/users/${user.photo}` alt=`${user.name}`)
+      -else 
+        svg.profile__pic__img.profile__pic__img--icon
+          use(xlink:href='/icons/sprite.svg#icon-account_circle')
+      input.profile__pic__upload__input(type = "file" name = "userPhoto" id = "userPhoto")
+      label.profile__pic__upload__label(for = "userPhoto")
+        svg.profile__pic__upload__label__icon
+          use(xlink:href='/icons/sprite.svg#icon-camera')
+    .profile__username= user.username
+    .profile__name= user.name
+    .profile__bio= user.bio ? user.bio : ''
+    -if(!userPublic)
+      a(href = '/editProfile').btn.btn--primary.profile__btn.profile__btn--editProfile Edit Profile
+    -else   
+      -let i;
+      -for(i = 0; i < currentUser.following.length; i++) 
+        -if(currentUser.following[i].toString() === userPublic.id.toString()) 
+          -break;
+
+
+      -if(i === currentUser.following.length)
+        a.btn.btn--primary.profile__btn.profile__btn--follow Follow
+      -else 
+        a.btn.btn--primary.profile__btn.profile__btn--follow.profile__btn--following Following
+  // #############################
+  .accountStats.row
+    // POST STATS LIKE LIKES, COMMENTS ROW
+    .accountStats__row
+      // ACCOUNT STATS CARD
+      .accountStats__item.accountStats__item--likes
+        .accountStats__item__icon
+          svg.accountStats__item__icon__svg
+            use(xlink:href='/icons/sprite.svg#icon-favorite')
+        .accountStats__item__info
+          .accountStats__item__info__value= user.totalLikes
+          .accountStats__item__info__label Likes
+      // ACCOUNT STATS CARD
+      .accountStats__item.accountStats__item.accountStats__item--comments
+        .accountStats__item__icon
+          svg.accountStats__item__icon__svg
+            use(xlink:href='/icons/sprite.svg#icon-chat')
+        .accountStats__item__info
+          .accountStats__item__info__value= user.totalComments
+          .accountStats__item__info__label Comments
+    // #############################
+    // ACCOUNT STATS LIKE FOLLOWERS, FOLLOWING ROW
+    .accountStats__row
+      // ACCOUNT STATS CARD
+      .accountStats__item.accountStats__item.accountStats__item--followers
+        .accountStats__item__info
+          .accountStats__item__info__value= user.followers.length
+          .accountStats__item__info__label Followers
+      // ACCOUNT STATS CARD
+      .accountStats__item.accountStats__item.accountStats__item--following
+        .accountStats__item__info
+          .accountStats__item__info__value= user.noOfPosts
+          .accountStats__item__info__label Post
+      // ACCOUNT STATS CARD
+      .accountStats__item.accountStats__item.accountStats__item--posts
+        .accountStats__item__info
+          .accountStats__item__info__value= user.following.length
+          .accountStats__item__info__label Following
+    // #############################
+    // POSTS 
+
+    .posts.row
+      -if(!user.posts || user.posts.length < 1)
+        .posts__zero No Photos Posted !!
+      each post in user.posts
+        -if(post.photo)
+          a.posts__item(href='#')
+            img.posts__item__img(src=`/images/posts/${post.photo}` alt='Post 1')
+

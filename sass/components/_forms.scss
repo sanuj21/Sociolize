@@ -1,0 +1,84 @@
+.formWrapper {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 4rem;
+}
+
+.form {
+  margin-top: 2rem;
+  &__field {
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+    & > * {
+      display: block;
+    }
+
+    &__input {
+      width: 100%;
+      border-radius: $border-radius-default;
+      border: 1px solid $color-grey-light-2;
+      padding: 0.6rem 1.2rem;
+      border-bottom-width: 1.8px;
+      transition: border-bottom 0.2s;
+
+      &:focus {
+        outline: none;
+        border-bottom: 1.8px solid $color-primary;
+      }
+    }
+    &__errorValidation,
+    &__successValidation {
+      font-size: $text-size-small;
+      margin-top: 0.8rem;
+    }
+
+    &__errorValidation {
+      color: $color-danger;
+    }
+    &__successValidation {
+      color: $color-success;
+    }
+
+    &__label {
+      margin-bottom: 0.5rem;
+    }
+
+    &__password {
+      display: flex;
+      align-items: center;
+      &__toggleBtn {
+        width: 3.5rem;
+        height: 3.5rem;
+        display: inline-block;
+        margin-left: -3.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__svg {
+          width: 2rem;
+          height: 2rem;
+          fill: $color-grey-dark-3;
+        }
+      }
+    }
+
+    &__submit {
+      margin-top: 3rem;
+    }
+
+    &__submit,
+    &__signup {
+      width: 100%;
+      padding: 0.55rem;
+      box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+    }
+
+    &--or {
+      text-align: center;
+      margin-top: -1rem;
+      margin-bottom: 1rem !important;
+    }
+  }
+}

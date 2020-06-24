@@ -1,0 +1,103 @@
+.modalAlert {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  margin-left: -100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2349;
+  transition: 0.6s;
+  margin-left: 0;
+
+  background-color: rgba(0, 0, 0, 0.6);
+
+  &__content {
+    display: inline-block;
+    position: relative;
+    background-color: $color-white;
+    display: inline-block;
+    border-radius: 0.3rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.6rem;
+    opacity: 0;
+    animation: 0.4s ease-in fadeAlert forwards;
+    text-align: center;
+    padding: 2rem 5rem;
+  }
+  &__btn--ok {
+    border: 1px solid $color-default;
+    border-radius: 0.2rem;
+    padding: 0.5rem 3rem;
+    display: inline-block;
+    margin-top: 1rem;
+  }
+}
+
+@keyframes fadeAlert {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// LIKING HEART
+.likingHeart {
+  animation: scaleHeart 0.5s forwards;
+}
+
+.likedHeart {
+  fill: $color-secondary !important;
+}
+
+.fadedHeart {
+  display: inline-block;
+  width: 7rem;
+  height: 7rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 3223;
+  animation: scaleHeartFade 1s forwards;
+  // fill: $color-white-transparent;
+  fill: $color-primary-extraLight;
+}
+
+@keyframes scaleHeart {
+  0% {
+    transform: scale(0);
+  }
+
+  80% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleHeartFade {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  20% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,9 @@
+node_modules/
+public/*.html
+Data Models Structure/
+*.xd
+*.env
+*.txt
+.cache/
+*.ai
+*.pdf

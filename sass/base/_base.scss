@@ -1,0 +1,166 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: $color-grey-light-1;
+  color: $color-default;
+}
+
+.row {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+input,
+textarea,
+a:link,
+a:visited {
+  color: inherit;
+}
+
+input,
+textarea {
+  &::placeholder {
+    opacity: 0.6;
+  }
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+.section-posts {
+  margin-top: 1.5rem;
+}
+
+@media only screen and (min-width: 700px) {
+  .container {
+    max-width: 40rem;
+    min-height: 100vh;
+    margin: auto;
+    background-color: $color-grey-light-1;
+    border: 1px solid $color-grey-light-4;
+    margin-bottom: 5rem;
+  }
+
+  .nav-bottom {
+    max-width: 40rem;
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+  body {
+    background-color: $color-white;
+    background-color: $color-white;
+  }
+}
+
+.textarea--flexible {
+  resize: none;
+  overflow: hidden;
+}
+
+.notifyFade {
+  background-color: $color-white;
+  padding: 0.3rem 2rem;
+  border-radius: $border-radius-default;
+  display: none;
+  position: fixed;
+  bottom: 8rem;
+  left: 50%;
+  z-index: 3;
+  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.1);
+  transform: translateX(-50%);
+}
+
+.showNotify {
+  animation: fadeNotify 5s forwards;
+  display: block;
+  opacity: 0;
+}
+
+@keyframes fadeNotify {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.spinner {
+  width: 3rem;
+  height: 3rem;
+  fill: $color-primary;
+  animation: spin 1s forwards infinite linear;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: rotate(0deg) translate(-50%, -50%);
+  transform-origin: 0 0;
+
+  &--white {
+    fill: $color-white !important;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg) translate(-50%, -50%);
+  }
+  to {
+    transform: rotate(360deg) translate(-50%, -50%);
+  }
+}
+
+.notice {
+  margin: 3rem 2rem;
+  color: $color-default-dark;
+}
+
+.center {
+  text-align: center;
+}
+
+// GOOGLE PLAY BTN
+
+// GOOGLE SIGNUP BTN
+
+#customBtn {
+  padding: 0.5rem;
+  justify-content: center;
+  border: 1.4px solid $color-grey-light-4;
+  display: flex;
+  align-items: center;
+  background-color: $color-white;
+  border-radius: 10rem;
+}
+#customBtn:hover {
+  cursor: pointer;
+}
+
+span.buttonText {
+  display: inline-block;
+  margin-left: 1rem;
+  color: $color-default;
+}
+
+.img--google {
+  width: 2rem;
+  height: 2rem;
+}
+
+.following__list {
+  background-color: $color-white;
+  border-top: 1.2px solid $color-grey-dark-4;
+}

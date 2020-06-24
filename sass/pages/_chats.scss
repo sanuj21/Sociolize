@@ -1,0 +1,95 @@
+.chatInput {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  bottom: 1rem;
+  width: calc(100% - 2rem);
+
+  &__input {
+    flex-grow: 1;
+    border: 1px solid $color-grey-light-3;
+    padding: 0.8rem 1.5rem;
+    padding-left: 4rem;
+    border-radius: 10rem;
+    min-width: 4rem; // FOR FALLBACKS
+    margin-left: -4rem;
+  }
+
+  &__attachIcon {
+    width: 4rem;
+    height: 2rem;
+    z-index: 100;
+    text-align: center;
+    fill: $color-default;
+
+    &__svg {
+      width: 50%;
+      height: 100%;
+    }
+  }
+
+  &__sendIcon {
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-left: 1rem;
+
+    &__svg {
+      width: 100%;
+      height: 100%;
+      fill: $color-primary;
+    }
+  }
+}
+
+.messages__wrapper {
+}
+
+.messages {
+  margin-top: 2rem;
+
+  &--userTwo {
+    text-align: right;
+  }
+
+  &__item {
+    &:not(:first-child) {
+      margin-top: 1.5rem;
+    }
+
+    &--userOne {
+      margin-left: 1.5rem;
+      &:first-child {
+        margin-left: 0;
+        .messages__item__value {
+          padding-left: 2rem;
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%, 15% 25%);
+        }
+      }
+    }
+    &--userTwo {
+      margin-right: 1.5rem;
+      &:first-child {
+        margin-right: 0;
+        .messages__item__value {
+          padding-right: 2rem;
+          clip-path: polygon(100% 0, 80% 25%, 80% 100%, 0 100%, 0 0);
+        }
+      }
+    }
+    &__value {
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      color: $color-white;
+      border-radius: $border-radius-default;
+      position: relative;
+
+      &--userOne {
+        background-color: $color-grey-dark-2;
+      }
+      &--userTwo {
+        background-color: $color-primary;
+      }
+    }
+  }
+}

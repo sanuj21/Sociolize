@@ -1,0 +1,157 @@
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: $lineHeight-default;
+}
+
+// RESETTING THE ELEMENTS
+input,
+textarea,
+a:link,
+a:visited {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+input,
+textarea {
+  &::placeholder {
+    font-family: 'Work Sans', sans-serif;
+  }
+}
+
+.post {
+  &__more {
+    &__list {
+      font-size: $text-size-small;
+    }
+  }
+  &__time {
+    &__date {
+      font-size: $text-size-small;
+    }
+
+    &__clock {
+      font-size: $text-size-extraSmall;
+    }
+  }
+
+  &__title {
+    font-weight: 500;
+  }
+
+  &__description {
+    font-size: $text-size-small;
+    line-height: $lineHeight-small;
+  }
+
+  &__comments {
+    &__link {
+      font-size: $text-size-small;
+    }
+
+    &__notExist {
+      font-size: $text-size-small;
+    }
+  }
+
+  &__comment {
+    font-size: $text-size-small;
+    &__footer {
+      font-weight: 500;
+      font-size: $text-size-extraSmall;
+    }
+
+    &__description {
+      font-size: $text-size-small;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-break: break-all;
+      line-height: $lineHeight-small;
+
+      &--modal {
+        overflow: initial;
+        text-overflow: initial;
+        white-space: initial;
+      }
+    }
+    &__user {
+      font-weight: 500;
+    }
+  }
+}
+
+.footer {
+  font-size: $text-size-extraSmall;
+
+  &__list {
+    display: flex;
+    justify-content: space-around;
+    &__item {
+      &:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
+
+.add-post {
+  &__textarea {
+    line-height: $lineHeight-small;
+  }
+}
+
+.profile {
+  &__username {
+    font-size: $text-size-large;
+    font-weight: 400;
+  }
+}
+
+.accountStats {
+  &__item {
+    &__info {
+      &__value {
+        font-weight: 600;
+        font-size: $text-size-small;
+        line-height: $text-size-large;
+      }
+
+      &__label {
+        font-size: $text-size-extraSmall;
+        line-height: $text-size-default;
+      }
+    }
+  }
+}
+
+.userInfoBasic {
+  &__info {
+    &__username {
+      font-weight: 500;
+    }
+
+    &__name {
+      font-size: $text-size-small;
+      line-height: $lineHeight-default;
+    }
+  }
+}
+
+.messages {
+  font-size: $text-size-small;
+}
+
+// MODAL
+.modal {
+  &__header {
+    font-weight: 500;
+  }
+}

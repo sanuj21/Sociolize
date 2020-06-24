@@ -1,0 +1,60 @@
+{
+  "name": "sociolize",
+  "version": "1.0.0",
+  "description": "Let's socialize",
+  "main": "index.js",
+  "scripts": {
+    "watchSass": "node-sass sass/main.scss public/css/style.css -w",
+    "devserver": "live-server --open=public/",
+    "watchJs": "parcel watch ./public/js/main.js --out-dir ./public/js/ --out-file bundle.js",
+    "buildJs": "parcel build ./public/js/main.js --out-dir ./public/js/ --out-file bundle.js",
+    "startStatic": "npm-run-all --parallel devserver watch:sass",
+    "startApp": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "Anuj Sharma",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/polyfill": "^7.8.7",
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "compressorjs": "^1.0.6",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.0.0",
+    "express-rate-limit": "^5.1.3",
+    "google-auth-library": "^6.0.2",
+    "helmet": "^3.23.1",
+    "html-to-text": "^5.1.1",
+    "image-downloader": "^4.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.14",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.4.6",
+    "normalize.css": "^8.0.1",
+    "pug": "^2.0.4",
+    "sharp": "^0.25.4",
+    "validator": "^13.0.0",
+    "xss": "^1.0.7",
+    "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react": "^7.20.0",
+    "npm-run-all": "^4.1.5",
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^2.0.5"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  }
+}

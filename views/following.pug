@@ -1,0 +1,28 @@
+extends base
+
+block content 
+
+  .nav-secondary.row
+    .nav-secondary__list
+      .nav-secondary__list__item
+        a.nav-secondary__list__item__link(href = "/")
+          svg.nav-secondary__list__item__svg.navBtn__previousPage
+            use(xlink:href='/icons/sprite.svg#icon-keyboard_backspace')
+        .nav-secondary__user= user.username
+
+  ul.following__list
+    each userFoll in followingArr
+      li.modal-search__results__item
+        a.modal-search__results__item__link(href='/user/${user.username}')
+          .userInfoBasic
+            -if(userFoll.photo)
+              img.userInfoBasic__photo(src=`/images/users/${userFoll.photo}`)
+            -else 
+              svg.userInfoBasic__photo.userInfoBasic__photo--icon
+                use(xlink:href='/icons/sprite.svg#icon-account_circle')
+
+            .userInfoBasic__info
+              .userInfoBasic__info__username= userFoll.username
+              .userInfoBasic__info__name= userFoll.name
+            .userInfoBasic__action
+              span.btn.btn--primary.btn--small.userInfoBasic__action__follow.profile__btn--following(data-userid=`${userFoll.id}`) Following

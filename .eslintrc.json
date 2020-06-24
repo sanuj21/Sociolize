@@ -1,0 +1,26 @@
+{
+    "extends": ["airbnb", "prettier", "plugin:node/recommended"],
+    "plugins": ["prettier"],
+    "rules": {
+      "prettier/prettier": "error",
+      "no-console":"warn",
+      "no-unused-vars": ["error", {"argsIgnorePattern": "req|res|next|err"}],
+      "spaced-comment": "warn",
+      // SHOULD START A COMMENT WITH SPACE
+      "consistent-return": "off",
+      "func-names": "off", 
+      // IF ON, NEEDS TO ASSIGN NAME TO FUNC EXPRESSION, GOOGLE FOR MORE
+      "object-shorthand": "off",
+      // FORCES email: email SYNTAX to email IF ON
+      "no-process-exit": "off",
+      "no-param-reassign": "off",
+      // PREVENTS REASSIGNING
+      "no-return-await": "off",
+      // WHILE RETURNING WE CAN'T AWAIT, WHEN ON 
+      "no-underscore-dangle": "off",
+      "prefer-destructuring": "off",
+      "comma-dangle": ["error", "never"],
+      "no-plusplus": "off"
+    }
+  }
+  

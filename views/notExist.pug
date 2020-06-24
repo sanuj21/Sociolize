@@ -1,0 +1,13 @@
+extends base
+
+block content
+  // NAV SECONDARY
+  .nav-secondary.row
+    .nav-secondary__list
+      .nav-secondary__list__item
+        a.nav-secondary__list__item__link(href = "/")
+          svg.nav-secondary__list__item__svg.navBtn__previousPage
+            use(xlink:href='/icons/sprite.svg#icon-keyboard_backspace')
+        .nav-secondary__user= user.username
+
+  .notice= message

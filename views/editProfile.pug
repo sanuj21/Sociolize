@@ -1,0 +1,47 @@
+extends base
+
+mixin formField(label, value, uniqCl = '') 
+  .form__field
+    label.form__field__label= label
+    input.form__field__input(type='text' value = `${value}` class = `form__field__input--${uniqCl}`)
+
+block content
+
+  .container
+    // NAV SECONDARY
+    .nav-secondary.row
+      .nav-secondary__list
+        .nav-secondary__list__item
+          a.nav-secondary__list__item__link(href = "/")
+            svg.nav-secondary__list__item__svg.navBtn__previousPage
+              use(xlink:href='icons/sprite.svg#icon-keyboard_backspace')
+          .nav-secondary__user anuj21
+    // #############################
+    .formWrapper
+      .heading.heading--primary Edit Profile
+      form.form.form--editProfile
+        +formField('Full Name', user.name, 'name')
+        +formField('User Id', user.username, 'username')
+        .form__field
+          label.form__field__label Bio
+          textarea.textarea--flexible.form__field__input.form__field__input--bio(placeholder = "Write Something About Yourself!!" value = `${user.bio ? user.bio : ''}`)
+        
+        .form__field
+          input.form__field__submit.btn.btn--primary(type='submit' value='Save')
+    // BOTTOM NAV
+    .nav-bottom
+      .nav-bottom__list.row
+        .nav-bottom__list__item
+          svg.nav-bottom__list__item__svg
+            use(xlink:href='icons/sprite.svg#icon-home')
+        .nav-bottom__list__item
+          svg.nav-bottom__list__item__svg
+            use(xlink:href='icons/sprite.svg#icon-search')
+        .nav-bottom__list__item
+          svg.nav-bottom__list__item__svg
+            use(xlink:href='icons/sprite.svg#icon-favorite_outline')
+        .nav-bottom__list__item
+          svg.nav-bottom__list__item__svg
+            use(xlink:href='icons/sprite.svg#icon-paper-plane')
+    // #############################
+    // FOOTER

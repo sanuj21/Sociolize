@@ -1,0 +1,120 @@
+.profile {
+  margin-top: 3rem;
+  text-align: center;
+
+  &__pic {
+    height: 14rem;
+    border-radius: 50%;
+    position: relative;
+    width: 14rem;
+    margin: auto;
+
+    &__img {
+      position: absolute;
+      border-radius: 50%;
+      height: 14rem;
+      width: 14rem;
+      left: 0;
+      top: 0;
+
+      &--icon {
+        fill: $color-default;
+      }
+    }
+
+    &__upload {
+      &__input {
+        display: none;
+      }
+
+      &__label {
+        &__icon {
+          width: 2rem;
+          height: 2rem;
+          position: absolute;
+          right: 2.5rem;
+          bottom: 2rem;
+          fill: $color-white;
+        }
+      }
+    }
+
+    &--icon {
+      fill: $color-default;
+    }
+  }
+
+  &__username {
+    color: $color-default-dark;
+    margin: 0.5rem 0;
+  }
+
+  &__bio {
+  }
+
+  &__btn {
+    margin-top: 2rem;
+
+    &--following {
+      background-color: $color-white;
+      color: $color-primary;
+    }
+  }
+}
+
+.accountStats {
+  margin-top: 3rem;
+  &__row {
+    display: flex;
+    justify-content: center;
+  }
+  &__item {
+    border: 2px solid $color-grey-light-2;
+    display: flex;
+    flex-grow: 1;
+    max-width: 34%;
+    justify-content: center;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    background-color: $color-white;
+
+    &__icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-right: 1.2rem;
+      &__svg {
+        width: 100%;
+        height: 100%;
+        fill: $color-primary;
+      }
+    }
+
+    &__info {
+      text-align: center;
+
+      &__label {
+        opacity: $opacity-medium;
+      }
+    }
+  }
+}
+
+.posts {
+  border: 1px solid $color-grey-light-3;
+  margin-top: 2rem;
+  padding: 1rem;
+  display: flex;
+  background-color: $color-white;
+
+  &__item {
+    width: calc(100% / 3);
+    padding: 0.5rem;
+    &__img {
+      width: 100%;
+    }
+  }
+
+  &__zero {
+    margin-left: 1.5rem;
+  }
+}

@@ -1,0 +1,78 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid $color-grey-light-2;
+  background-color: $color-white;
+
+  & > * {
+    height: 3rem;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+
+    & img {
+      height: 80%;
+    }
+
+    &--text {
+      & img {
+        height: 80%;
+      }
+    }
+  }
+
+  &__user {
+    &__img {
+      width: 3rem;
+      fill: $color-primary;
+      border-radius: 50%;
+      height: 3rem;
+    }
+  }
+}
+
+.nav-secondary {
+  padding: 0.8rem 0;
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+
+    &__item {
+      &__link {
+        display: flex;
+        align-items: center;
+      }
+      &:first-child {
+        display: flex;
+        align-items: center;
+      }
+
+      &__svg {
+        width: 2.5rem;
+        height: 2.5rem;
+        fill: $color-default-dark;
+      }
+    }
+  }
+
+  &__user {
+    margin-left: 1.5rem;
+    display: flex;
+    align-items: center;
+    &__photo {
+      height: 2.5rem;
+      border-radius: 50%;
+    }
+
+    &__name {
+      display: inline-block;
+      margin-left: 0.8rem;
+      color: $color-default-dark;
+    }
+  }
+}

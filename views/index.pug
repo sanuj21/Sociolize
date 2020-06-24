@@ -1,0 +1,165 @@
+extend base
+
+block content 
+  // NAVIGATION
+  nav.nav
+    //- .nav__logo.nav__logo--icon
+    //-   img(src='logos/logo.svg')
+    .nav__logo.nav__logo--text
+      img(src='logos/logo__text.svg')
+    .nav__user
+      a(href = "/myProfile")
+        -if(user.photo)
+          img.nav__user__img(src = `/images/users/${user.photo}`)
+        -else 
+          svg.nav__user__img
+            use(xlink:href='icons/sprite.svg#icon-account_circle')
+  // #############################
+  // ADD POST BOX
+  .add-post.row
+    .add-post__user__avatar
+      -if(user.photo)
+        img.add-post__user__avatar__photo(src=`/images/users/${user.photo}`)
+      -else 
+        svg.add-post__user__avatar__icon
+          use(xlink:href='icons/sprite.svg#icon-account_circle')
+
+    textarea.add-post__textarea.textarea--flexible(placeholder=`Hi ${user.name.split(' ')[0]}!! Whats in your mind ? Post here!!!`)
+    .add-post__btns
+      input(type = "file" name = "postPhoto" id = "postPhoto" class = "add-post__btns__photoInput postPhotoInput")
+      label.add-post__btns__label(for = "postPhoto")
+        svg.add-post__btns__img
+          use(xlink:href='icons/sprite.svg#icon-camera')
+      svg.add-post__btns__img.add-post__submit
+        use(xlink:href='icons/sprite.svg#icon-send')
+  // #############################
+
+  .section-posts
+    // POST BOX
+
+    each post in posts
+      .post.row(data-postid=`${post.id}`)
+        .post__header
+          .post__user
+            -if(post.user.photo)
+              img.post__user__photo(src=`images/users/${post.user.photo}` alt='Anuj Sharma')
+            -else 
+              svg.post__user__icon
+                use(xlink:href='icons/sprite.svg#icon-account_circle')
+            span.post__user__name= post.user.username
+          .post__time
+            .post__time__date= `${post.postedOn.toLocaleString('en', { day: 'numeric', month: 'long'})}`
+            .post__time__clock= `${post.postedOn.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}`
+          .post__more
+            svg.post__more__btn
+              use(xlink:href='icons/sprite.svg#icon-keyboard_control')
+            .post__more__list(data-postid=`${post.id}`)
+              .post__more__list__item.post__more__list__item--copy Copy Link
+              -if(user.id === post.user.id)
+                .post__more__list__item.post__more__list__item--delete Delete
+              -else
+                .post__more__list__item.post__more__list__item--report Report
+
+
+        .post__body
+          -if(post.photo)
+            .post__img
+              img.post__img__src(src=`/images/posts/${post.photo}` alt='Post 1')
+          -else 
+            .post__info.post__info--main
+              .post__description--main= post.description
+          .post__actions
+            -let i = 0;
+            -for(i = 0; i < post.likes.length; i++) 
+              // Breaking the loop, when it matches the like by the user
+              -if(post.likes[i].likedBy.id === user.id)
+                -break;
+            // If it doesn't matches, means user has not liked
+            -if(i === post.likes.length)
+              svg.post__actions__icon.post__actions__icon--like
+                use(xlink:href='icons/sprite.svg#icon-favorite_outline')
+            -else 
+              svg.post__actions__icon.post__actions__icon--like.likedHeart(data-likeId = `${post.likes[i].id}`)
+                use(xlink:href='icons/sprite.svg#icon-favorite')
+            svg.post__actions__icon.post__actions__icon--comment
+              use(xlink:href='icons/sprite.svg#icon-forum')
+            svg.post__actions__icon.post__actions__icon--message
+              use(xlink:href='icons/sprite.svg#icon-paper-plane')
+          -if(post.photo)
+            .post__info
+              .post__description= post.description
+        .post__footer
+          .post__comments
+            -if(post.comments.length > 0)
+              a.post__comments__link View All Comments
+              // ONE COMMENT BOX
+              .post__comment
+                .post__comment__description
+                  span.post__comment__user= `${post.comments[0].commentedBy.username}: ` 
+                  | #{post.comments[0].comment}
+                .post__comment__footer
+                  .post__comment__time(data-timeadded=`${post.comments[0].commentedOn}`)= `${post.comments[0].commentedOn.toLocaleString('en', { day: 'numeric', month: 'long'})}`
+                  -if(post.comments[0].likes && post.commmets[0].likes.length < 0)
+                    .post__comment__likesTotal=`${post.commmets[0].likes.length} Like`
+                  -else
+                    .post__comment__likesTotal
+                  .post__comment__reply Reply
+                  svg.post__comment__icon.post__comment__icon--like
+                    use(xlink:href='icons/sprite.svg#icon-favorite_outline')
+
+            -else 
+              .post__comments__notExist(href='#') No Comments!!
+
+    .post__end.notice No More Posts!! Follow more people to see more!!
+
+  // MODALS
+  .modals
+
+  // ASK MODAL
+  .modal.modal-confirmation
+    .modal-confirmation__content
+      .modal-confirmation__paraSure
+        | Are you sure ?
+      .modal-confirmation__btns
+        .modal-confirmation__btns__btn.modal-confirmation__btns__btn--yes
+          | Yes
+        .modal-confirmation__btns__btn.modal-confirmation__btns__btn--no
+          | No
+
+
+  .modal.modal-comments
+    .modal-comments__content
+      .modal-comments__header.modal__header
+        svg.modal-comments__header__backBtn.modal__header__backBtn
+          use(xlink:href='/icons/sprite.svg#icon-keyboard_backspace')
+        .modal__header__info Comments
+      .modal-comments__content__body
+        // ONE COMMENT BOX
+        // #############################
+      .modal-comments__content__type
+        textarea.modal-comments__content__type__input.comment__inputBox.textarea--flexible(type='text' placeholder='Add your comment' rows='1')
+        a.modal-comments__content__type__post.submit__comment Post
+
+
+  .modal.add-post__modal
+    .modal__content
+      .add-post__modal__header
+        svg.add-post__modal__backBtn.modal__header__backBtn
+          use(xlink:href='icons/sprite.svg#icon-keyboard_backspace')
+        .post__user
+          -if(user.photo)
+            img.add-post__user__avatar__photo(src=`/images/users/${user.photo}`)
+          -else 
+            svg.add-post__user__avatar__icon
+              use(xlink:href='icons/sprite.svg#icon-account_circle')
+          span.post__user__name= user.username
+      .add-post__modal__body
+        img.post__img.add-post__modal__imgSelected(src='' alt='Post 1')
+        .post__info
+          textarea.add-post__textarea.add-post__textarea--withImg.textarea--flexible(rows='1' placeholder='Type a Description....')
+      .add-post__modal__footer
+        a.btn.btn--primary.add-post__submit--img Post
+      // #############################
+
+
+
