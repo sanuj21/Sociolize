@@ -10,7 +10,7 @@ export const showLoader = (el, modalLoader = false) => {
   let classSpinner = 'spinner';
   if (modalLoader) {
     el.classList.add('modal--show');
-    classSpinner += ' spinner--white';
+    classSpinner += ' spinner--secondary';
   }
   const loaderMarkup = `
     <svg class = "${classSpinner}">

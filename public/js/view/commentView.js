@@ -155,10 +155,6 @@ export const showComments = async (el, e) => {
     commentsMarkup = commentsMarkup + singleCommentMarkup(el);
   });
 
-  if (!commentsMarkup) {
-    commentsMarkup = `<div class = "modal__zero">No Comments!!</div>`;
-  }
-
   baseView.DOMElements.modalCommentsBody.insertAdjacentHTML(
     'beforeend',
     commentsMarkup

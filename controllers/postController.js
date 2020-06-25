@@ -89,7 +89,7 @@ exports.deletePost = genericPost(
     const post = await Post.findById(req.params.id);
     if (!post) return next(new AppError('No post exist with that Id', 404));
     if (post.photo) {
-      await promisify(fs.unlink)(`public/images/posts/${post.photo}`);
+      fs.unlink(`public/images/posts/${post.photo}`, function (err) {});
     }
 
     await handlerFactory.deleteDoc(Post)(req, res, next);

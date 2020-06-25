@@ -24,7 +24,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     req.body.photo = req.file.filename;
     const user = await User.findById(req.user.id);
     if (user.photo) {
-      await promisify(fs.unlink)(`public/images/users/${user.photo}`);
+      fs.unlink(`public/images/users/${user.photo}`, function (err) {});
     }
   }
 
