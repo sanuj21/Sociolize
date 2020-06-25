@@ -49,7 +49,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 
     //  UPDATE THE FOLLOWERS OF LOGGED IN USER
     followedUser = await User.findById(req.body.followed);
-    followedUser.following.push(req.user.id);
+    followedUser.followers.push(req.user.id);
     await followedUser.save({ validateBeforeSave: false });
   } else if (req.body.unfollowed) {
     let index;
@@ -62,7 +62,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     //  UPDATE THE FOLLOWERS OF LOGGED IN USER
     followedUser = await User.findById(req.body.unfollowed);
     index = followedUser.following.indexOf(req.user.id);
-    followedUser.following.splice(index, 1);
+    followedUser.followers.splice(index, 1);
     await followedUser.save({ validateBeforeSave: false });
   } else {
     updatedUser = await User.findByIdAndUpdate(req.user.id, req.body, {
