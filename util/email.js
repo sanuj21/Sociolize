@@ -7,6 +7,7 @@ class Email {
     this.user = user;
     this.firstName = user.name.split(' ')[0];
     this.url = url;
+    this.from = `Anuj Sharma <mailtoanuj21@gmail.com>`;
   }
 
   // SEND THE MAIL
@@ -23,7 +24,7 @@ class Email {
 
     // SEND EMAIL
     const mailOptions = {
-      from: 'mailtoanuj@gettogether.com',
+      from: this.from,
       to: this.user.email,
       subject: subject,
       html,

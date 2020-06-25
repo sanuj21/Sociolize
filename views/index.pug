@@ -40,7 +40,7 @@ block content
     each post in posts
       .post.row(data-postid=`${post.id}`)
         .post__header
-          .post__user
+          a.post__user(href = `/user/${user.username}`)
             -if(post.user.photo)
               img.post__user__photo(src=`images/users/${post.user.photo}` alt='Anuj Sharma')
             -else 

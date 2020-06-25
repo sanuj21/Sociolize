@@ -6,6 +6,10 @@
 
 .form {
   margin-top: 2rem;
+
+  &--signup {
+    margin: 2rem;
+  }
   &__field {
     &:not(:last-child) {
       margin-bottom: 2rem;

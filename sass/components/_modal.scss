@@ -4,6 +4,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  overflow: scroll;
   z-index: 1;
 
   @media only screen and (min-width: 700px) {
@@ -15,10 +16,6 @@
   &--show {
     display: block !important;
     z-index: 5 !important;
-
-    &__body {
-      // overflow: hidden !important;
-    }
   }
 
   &--showTop {
@@ -219,9 +216,6 @@
   // border: 12px solid;
 
   background-color: $color-white;
-
-  &__content {
-  }
 
   &__header {
     padding: 0;

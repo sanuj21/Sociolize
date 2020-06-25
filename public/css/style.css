@@ -815,6 +815,7 @@ span.buttonText {
       cursor: pointer; }
   .post__user {
     display: flex;
+    text-decoration: none;
     align-items: center; }
     .post__user__icon {
       width: 3rem;
@@ -1013,6 +1014,8 @@ span.buttonText {
 
 .form {
   margin-top: 2rem; }
+  .form--signup {
+    margin: 2rem; }
   .form__field:not(:last-child) {
     margin-bottom: 2rem; }
   .form__field > * {
@@ -1068,6 +1071,7 @@ span.buttonText {
   position: fixed;
   top: 0;
   left: 0;
+  overflow: scroll;
   z-index: 1; }
   @media only screen and (min-width: 700px) {
     .modal {
@@ -1271,7 +1275,8 @@ span.buttonText {
     position: absolute;
     top: 10%;
     width: 86%;
-    left: 6%; }
+    left: 6%;
+    margin-bottom: 7rem; }
     .modal-welcome__content:before {
       content: '';
       display: block;
