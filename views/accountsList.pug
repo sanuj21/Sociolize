@@ -13,14 +13,17 @@ block content
         -else if(followersArr)
           .nav-secondary__user Followers
   
-  -let pubUsers = followersArr;
+  -let pubUsers
   -if(followingArr)
     -pubUsers = followingArr;
+  -if(followersArr)
+    -pubUsers = followersArr;
+
 
   ul.following__list
     each userFoll in pubUsers
       li.modal-search__results__item
-        a.modal-search__results__item__link(href='/user/${user.username}')
+        a.modal-search__results__item__link(href=`/user/${userFoll.username}`)
           .userInfoBasic
             -if(userFoll.photo)
               img.userInfoBasic__photo(src=`/images/users/${userFoll.photo}`)

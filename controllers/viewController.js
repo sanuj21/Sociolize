@@ -73,6 +73,7 @@ exports.getUserProfile = catchAsync(async (req, res, next) => {
   }
 
   const user = await User.findOne({ username: req.params.username });
+  console.log(user);
 
   res.render('myProfile', {
     title: 'Sociolize   ',

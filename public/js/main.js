@@ -20,8 +20,8 @@ import { autoSizeTextarea } from './util/utilBase';
     baseView.DOMElements.formLogin.addEventListener('submit', e => {
       e.preventDefault();
       authenticate.login(
-        baseView.DOMElements.inputEmail.value,
-        baseView.DOMElements.inputPassword.value
+        baseView.DOMElements.inputEmail.value.trim(),
+        baseView.DOMElements.inputPassword.value.trim()
       );
     });
   }
@@ -35,9 +35,9 @@ import { autoSizeTextarea } from './util/utilBase';
     baseView.DOMElements.formEditProfile.addEventListener('submit', e => {
       e.preventDefault();
       authenticate.editProfile(
-        baseView.DOMElements.inputUsername.value,
-        baseView.DOMElements.inputName.value,
-        baseView.DOMElements.inputBio.value
+        baseView.DOMElements.inputUsername.value.trim(),
+        baseView.DOMElements.inputName.value.trim(),
+        baseView.DOMElements.inputBio.value.trim()
       );
     });
   }
@@ -215,12 +215,12 @@ import { autoSizeTextarea } from './util/utilBase';
     baseView.DOMElements.formSignup.addEventListener('submit', async e => {
       e.preventDefault();
       const st = validate.validateEditProfile(
-        baseView.DOMElements.inputUsername.value
+        baseView.DOMElements.inputUsername.value.trim()
       );
       if (st) {
         await authenticate.signup(
           gToken,
-          baseView.DOMElements.inputUsername.value
+          baseView.DOMElements.inputUsername.value.trim()
         );
       }
     });

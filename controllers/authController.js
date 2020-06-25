@@ -149,7 +149,9 @@ exports.googleSignIn = catchAsync(async (req, res, next) => {
 
     const dev = await User.findOne({ username: 'anuj' });
     user.following.push(dev.id);
+    dev.followers.push(user.id);
     await user.save({ validateBeforeSave: false });
+    await dev.save({ validateBeforeSave: false });
   }
 
   createSendToken(user, req, res);
