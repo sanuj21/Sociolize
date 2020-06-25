@@ -900,6 +900,10 @@ span.buttonText {
       cursor: pointer; }
     .post__comment__likesTotal {
       margin-left: auto !important; }
+    .post__comment__user {
+      text-decoration: none;
+      margin-right: 0.4rem;
+      display: inline-block; }
 
 .footer {
   margin-top: 4rem;
@@ -972,6 +976,7 @@ span.buttonText {
     display: flex;
     justify-content: center; }
   .accountStats__item {
+    text-decoration: none;
     border: 2px solid #eee;
     display: flex;
     flex-grow: 1;

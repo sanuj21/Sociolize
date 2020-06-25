@@ -8,10 +8,17 @@ block content
         a.nav-secondary__list__item__link(href = "/")
           svg.nav-secondary__list__item__svg.navBtn__previousPage
             use(xlink:href='/icons/sprite.svg#icon-keyboard_backspace')
-        .nav-secondary__user= user.username
+        -if(followingArr)
+          .nav-secondary__user Followed Accounts
+        -else if(followersArr)
+          .nav-secondary__user Followers
+  
+  -let pubUsers = followersArr;
+  -if(followingArr)
+    -pubUsers = followingArr;
 
   ul.following__list
-    each userFoll in followingArr
+    each userFoll in pubUsers
       li.modal-search__results__item
         a.modal-search__results__item__link(href='/user/${user.username}')
           .userInfoBasic

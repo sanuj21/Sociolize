@@ -88,8 +88,9 @@ exports.getNotExist = (req, res, next) => {
   });
 };
 
-// SHOW FOLLOWERS
+// SHOW FOLLOWINGS
 exports.getFollowings = catchAsync(async (req, res, next) => {
+  if (!checkWhetherLoggedIn(req, res)) return;
   let followingArr = Array.from(req.user.following);
   followingArr = toObjectId(followingArr);
 
@@ -99,8 +100,26 @@ exports.getFollowings = catchAsync(async (req, res, next) => {
     }
   });
 
-  res.render('following', {
+  res.render('accountsList', {
     title: 'Sociolize   ',
     followingArr
+  });
+});
+
+// SHOW FOLLOWINGS
+exports.getFollowers = catchAsync(async (req, res, next) => {
+  if (!checkWhetherLoggedIn(req, res)) return;
+  let followersArr = Array.from(req.user.followers);
+  followersArr = toObjectId(followersArr);
+
+  followersArr = await User.find({
+    _id: {
+      $in: followersArr
+    }
+  });
+
+  res.render('accountsList', {
+    title: 'Sociolize   ',
+    followersArr
   });
 });

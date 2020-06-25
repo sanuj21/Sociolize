@@ -20,7 +20,7 @@ const singleCommentMarkup = el => {
   const markUp = `<!-- ONE COMMENT BOX-->
         <div class="post__comment post__comment--modal" data-commentid='${el.id}'>
           <div class="post__comment__description post__comment__description--modal">
-            <span class="post__comment__user">${el.commentedBy.username}: </span>${el.comment}
+            <a class="post__comment__user" href = "/user/${el.commentedBy.username}">${el.commentedBy.username} : </a>${el.comment}
           </div>
           <div class="post__comment__footer">
             <div class="post__comment__time">${agoComment}</div>

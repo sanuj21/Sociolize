@@ -68,8 +68,6 @@
     display: flex;
     margin-left: auto;
     align-items: center;
-    &__date {
-    }
 
     &__clock {
       margin-left: 0.8rem;
@@ -185,7 +183,10 @@
       margin-left: auto !important;
     }
 
-    &__description {
+    &__user {
+      text-decoration: none;
+      margin-right: 0.4rem;
+      display: inline-block;
     }
   }
 }

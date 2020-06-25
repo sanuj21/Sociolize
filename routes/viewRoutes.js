@@ -15,6 +15,11 @@ router.get(
   viewController.getFollowings
 );
 router.get(
+  '/followers',
+  authController.isLoggedIn,
+  viewController.getFollowers
+);
+router.get(
   '/myProfile',
   authController.isLoggedIn,
   viewController.getMyProfile
