@@ -39,16 +39,31 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   }
 
   let updatedUser;
+  let followedUser;
   // IF EXIST, MEANS USER IS CLICK ON FOLLOW BTN
   if (req.body.followed) {
+    // UPDATE THE FOLLOWING OF LOGGED IN USER
     updatedUser = await User.findById(req.user.id);
     updatedUser.following.push(req.body.followed);
     await updatedUser.save({ validateBeforeSave: false });
+
+    //  UPDATE THE FOLLOWERS OF LOGGED IN USER
+    followedUser = await User.findById(req.body.followed);
+    followedUser.following.push(req.user.id);
+    await followedUser.save({ validateBeforeSave: false });
   } else if (req.body.unfollowed) {
+    let index;
+    // UPDATE THE FOLLOWING OF LOGGED IN USER
     updatedUser = await User.findById(req.user.id);
-    const index = updatedUser.following.indexOf(req.body.unfollowed);
+    index = updatedUser.following.indexOf(req.body.unfollowed);
     updatedUser.following.splice(index, 1);
     await updatedUser.save({ validateBeforeSave: false });
+
+    //  UPDATE THE FOLLOWERS OF LOGGED IN USER
+    followedUser = await User.findById(req.body.unfollowed);
+    index = followedUser.following.indexOf(req.user.id);
+    followedUser.following.splice(index, 1);
+    await followedUser.save({ validateBeforeSave: false });
   } else {
     updatedUser = await User.findByIdAndUpdate(req.user.id, req.body, {
       new: true, // BY DEFUALT THIS METHOD RETURNS THE OLD DOC
