@@ -99,7 +99,8 @@ const createPostDom = el => {
 // ########################
 
 // HANDLING CLICK ON POST MORE
-const handleClickPostMore = async (el, e) => {
+const handleClickPostMore = async e => {
+  const el = e.target.parentNode;
   let postId = el.dataset.postid || null;
   if (
     e.target.matches('.post__more__list__item--delete') ||
@@ -127,7 +128,7 @@ const handleClickPostMore = async (el, e) => {
 
     if (result.state == 'granted' || result.state == 'prompt') {
       const text = await navigator.clipboard.writeText(location.href);
-      el.parentNode.removeChild(el);
+      el.classList.remove('post__more__list--show');
       customAlert.showToastNotification('Link Copied');
     }
   }
@@ -171,7 +172,7 @@ export const handleClickPost = el => {
       e.target.matches('.post__more__list') ||
       e.target.matches('.post__more__list *')
     ) {
-      await handleClickPostMore(document.querySelector('.post__more__list'), e);
+      await handleClickPostMore(e);
     }
   };
 };

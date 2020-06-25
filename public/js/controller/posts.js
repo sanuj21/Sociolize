@@ -183,6 +183,9 @@ export const addPost = async () => {
         console.log(err.message);
       }
     });
+
+    // EMPTY THE SELECT INPUT AFTER UPLOADING
+    baseView.DOMElements.postPhotoInput.value = '';
   } else {
     res = await axios({
       method: 'POST',
