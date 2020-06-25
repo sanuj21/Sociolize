@@ -31,7 +31,8 @@ export const login = async (email, password) => {
     });
 
     if (res.data.status === 'success') {
-      customAlert.showToastNotification('Login Successfully!!', '/');
+      customAlert.showToastNotification('Login Successfully!!');
+      location.assign('/');
     } else {
       customAlert.alertPrimary('Login Failed!!');
     }
