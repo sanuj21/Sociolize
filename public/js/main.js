@@ -14,14 +14,14 @@ import { autoSizeTextarea } from './util/utilBase';
   // HANDLING LOGIN FORM
   if (baseView.DOMElements.formLogin) {
     baseView.DOMElements.inputs.forEach(el => {
-      el.addEventListener('keyup', validate.validateLogin(el));
+      el.addEventListener('keyup', validate.validateLogin);
     });
 
     baseView.DOMElements.formLogin.addEventListener('submit', e => {
       e.preventDefault();
       authenticate.login(
-        baseView.DOMElements.inputEmail.value.trim(),
-        baseView.DOMElements.inputPassword.value.trim()
+        baseView.DOMElements.inputEmail.value,
+        baseView.DOMElements.inputPassword.value
       );
     });
   }
@@ -29,15 +29,15 @@ import { autoSizeTextarea } from './util/utilBase';
   // HANDLING EDITPROFILE FORM
   if (baseView.DOMElements.formEditProfile) {
     baseView.DOMElements.inputs.forEach(el => {
-      el.addEventListener('keyup', validate.validateEditProfile(el));
+      el.addEventListener('keyup', validate.validateEditProfile);
     });
 
     baseView.DOMElements.formEditProfile.addEventListener('submit', e => {
       e.preventDefault();
       authenticate.editProfile(
-        baseView.DOMElements.inputUsername.value.trim(),
-        baseView.DOMElements.inputName.value.trim(),
-        baseView.DOMElements.inputBio.value.trim()
+        baseView.DOMElements.inputUsername.value,
+        baseView.DOMElements.inputName.value,
+        baseView.DOMElements.inputBio.value
       );
     });
   }
@@ -53,11 +53,11 @@ import { autoSizeTextarea } from './util/utilBase';
   // HANDLING CLICK ON POST
   if (baseView.DOMElements.post.length > 0) {
     baseView.DOMElements.post.forEach(el => {
-      el.addEventListener('dblclick', postView.handleDblClickPost(el));
+      el.addEventListener('dblclick', postView.handleDblClickPost);
     });
 
     baseView.DOMElements.post.forEach(el => {
-      el.addEventListener('click', postView.handleClickPost(el));
+      el.addEventListener('click', postView.handleClickPost);
     });
   }
 
@@ -98,7 +98,7 @@ import { autoSizeTextarea } from './util/utilBase';
   // MAKING TEXTAREA FLEXIBLE (AUTOSIZE)
   if (baseView.DOMElements.textareaFlexibleArr.length > 0) {
     baseView.DOMElements.textareaFlexibleArr.forEach(el => {
-      el.addEventListener('input', autoSizeTextarea(el));
+      el.addEventListener('input', autoSizeTextarea);
     });
   }
 
@@ -209,18 +209,18 @@ import { autoSizeTextarea } from './util/utilBase';
   if (baseView.DOMElements.formSignup) {
     baseView.DOMElements.inputUsername.addEventListener(
       'keyup',
-      validate.validateEditProfile(baseView.DOMElements.inputUsername)
+      validate.validateEditProfile
     );
 
     baseView.DOMElements.formSignup.addEventListener('submit', async e => {
       e.preventDefault();
-      const st = validate.validateEditProfile(
-        baseView.DOMElements.inputUsername.value.trim()
+      const st = validate.validateEditProfile.call(
+        baseView.DOMElements.inputUsername.value
       );
       if (st) {
         await authenticate.signup(
           gToken,
-          baseView.DOMElements.inputUsername.value.trim()
+          baseView.DOMElements.inputUsername.value
         );
       }
     });

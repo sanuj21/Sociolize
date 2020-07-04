@@ -6,9 +6,9 @@ import * as utilBase from '../util/utilBase';
 
 // LOGIN WITH EMAIL AND PASSWORD
 export const login = async (email, password) => {
-  baseView.DOMElements.inputs.forEach(el => {
-    validate.validateLogin(el)();
-  });
+  email = email.trim();
+  password = password.trim();
+  baseView.DOMElements.inputs.forEach(el => validate.validateLogin);
 
   // IF THERE ARE ANY ELEMENT HAVING CALSS ERRORVALIDATION, THAN IT MEANS THE VALIDATION HAS FAILED
   if (
@@ -43,6 +43,7 @@ export const login = async (email, password) => {
 
 // SIGNING IN WITH GOOGLE
 export const signup = async (gToken, username) => {
+  username = username.trim();
   try {
     let data = {
       username,
@@ -77,9 +78,9 @@ export const signup = async (gToken, username) => {
 
 // EDITING PROFILE OF USER
 export const editProfile = async (username, name, bio) => {
-  baseView.DOMElements.inputs.forEach(el => {
-    validate.validateEditProfile(el)();
-  });
+  username = username.trim();
+  name = name.trim();
+  baseView.DOMElements.inputs.forEach(el => validate.validateEditProfile);
 
   // IF THERE ARE ANY ELEMENT HAVING CLASS ERRORVALIDATION, THAN IT MEANS THE VALIDATION HAS FAILED
   if (

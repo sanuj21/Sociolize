@@ -1,9 +1,7 @@
 // AUTOMATIC RESIZING TEXTAREA
-export const autoSizeTextarea = el => {
-  return () => {
-    el.style.height = 'auto';
-    el.style.height = el.scrollHeight + 'px';
-  };
+export const autoSizeTextarea = function () {
+  this.style.height = 'auto';
+  this.style.height = el.scrollHeight + 'px';
 };
 
 export const showLoader = (el, modalLoader = false) => {

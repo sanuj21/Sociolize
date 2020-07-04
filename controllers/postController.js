@@ -1,6 +1,5 @@
 const multer = require('multer');
 const fs = require('fs');
-const { promisify } = require('util');
 const AppError = require('../util/appError');
 const catchAsync = require('../util/catchAsync');
 const handlerFactory = require('./handlerFactory');

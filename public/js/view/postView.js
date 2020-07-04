@@ -100,7 +100,7 @@ const createPostDom = el => {
 
 // HANDLING CLICK ON POST MORE
 const handleClickPostMore = async e => {
-  const el = e.target.parentNode;
+  let el = e.target.parentNode;
   let postId = el.dataset.postid || null;
   if (
     e.target.matches('.post__more__list__item--delete') ||
@@ -136,73 +136,73 @@ const handleClickPostMore = async e => {
 //######################################
 
 // HANDLE CLICK ON POST
-export const handleClickPost = el => {
-  return async e => {
-    let postId = el.dataset.postid || null;
-    const post = createPostDom(el);
-    // WHEN CLICKED ON HEART ICON
+export const handleClickPost = async function (e) {
+  let el = this;
+  let postId = el.dataset.postid || null;
+  const post = createPostDom(el);
+  // WHEN CLICKED ON HEART ICON
 
-    if (
-      e.target.matches('.post__actions__icon--like') ||
-      e.target.matches('.post__actions__icon--like *')
-    ) {
-      toggleLike(el, post);
-    }
-    // WHEN CLICKED ON COMMENT ICON
-    else if (
-      e.target.matches('.post__actions__icon--comment') ||
-      e.target.matches('.post__actions__icon--comment *') ||
-      e.target.matches('.post__comments__link')
-    ) {
-      await showComments(el, e);
-    }
-    // WHEN CLICK ON 3 DOTS ON POST
-    else if (
-      e.target.matches('.post__more__btn') ||
-      e.target.matches('.post__more__btn *')
-    ) {
-      el.querySelector('.post__more__list').classList.toggle(
-        'post__more__list--show'
-      );
-      // el.querySelector('.post__more').insertAdjacentHTML(
-      //   'beforeend',
-      //   markupMore
-      // );
-    } else if (
-      e.target.matches('.post__more__list') ||
-      e.target.matches('.post__more__list *')
-    ) {
-      await handleClickPostMore(e);
-    }
-  };
+  if (
+    e.target.matches('.post__actions__icon--like') ||
+    e.target.matches('.post__actions__icon--like *')
+  ) {
+    toggleLike(el, post);
+  }
+  // WHEN CLICKED ON COMMENT ICON
+  else if (
+    e.target.matches('.post__actions__icon--comment') ||
+    e.target.matches('.post__actions__icon--comment *') ||
+    e.target.matches('.post__comments__link')
+  ) {
+    await showComments(el, e);
+  }
+  // WHEN CLICK ON 3 DOTS ON POST
+  else if (
+    e.target.matches('.post__more__btn') ||
+    e.target.matches('.post__more__btn *')
+  ) {
+    el.querySelector('.post__more__list').classList.toggle(
+      'post__more__list--show'
+    );
+    // el.querySelector('.post__more').insertAdjacentHTML(
+    //   'beforeend',
+    //   markupMore
+    // );
+  } else if (
+    e.target.matches('.post__more__list') ||
+    e.target.matches('.post__more__list *')
+  ) {
+    await handleClickPostMore(e);
+  }
 };
+
 // ########################
 
 // HANDLE DOUBLE CLICK ON POST
-export const handleDblClickPost = el => {
-  return e => {
-    const post = createPostDom(el);
-    // FOR IMAGE
-    if (
-      e.target.matches('.post__img') ||
-      e.target.matches('.post__img *') // FOR HEART
-    ) {
-      likePost(el, post, markup => {
-        post.img.insertAdjacentHTML('beforeend', markup);
-      });
-    }
+export const handleDblClickPost = function (e) {
+  let el = this;
+  const post = createPostDom(el);
+  // FOR IMAGE
+  if (
+    e.target.matches('.post__img') ||
+    e.target.matches('.post__img *') // FOR HEART
+  ) {
+    likePost(el, post, markup => {
+      post.img.insertAdjacentHTML('beforeend', markup);
+    });
+  }
 
-    // FOR POST TEXT
-    else if (
-      e.target.matches('.post__info--main') ||
-      e.target.matches('.post__info--main *')
-    ) {
-      likePost(el, post, markup => {
-        post.infoMain.insertAdjacentHTML('beforeend', markup);
-      });
-    }
-  };
+  // FOR POST TEXT
+  else if (
+    e.target.matches('.post__info--main') ||
+    e.target.matches('.post__info--main *')
+  ) {
+    likePost(el, post, markup => {
+      post.infoMain.insertAdjacentHTML('beforeend', markup);
+    });
+  }
 };
+
 // ########################
 
 // FETCHING IMAGE FROM USER'S DEVICE, WHILE ADDING POSTS
@@ -214,8 +214,8 @@ export const addPostImg = () => {
       baseView.DOMElements.addPostTextarea[0].value;
     baseView.DOMElements.addPostTextarea[0].value = '';
     document.querySelector('.add-post__textarea--withImg').focus();
-    autoSizeTextarea(baseView.DOMElements.addPostTextarea[0])();
-    autoSizeTextarea(baseView.DOMElements.addPostTextarea[1])();
+    autoSizeTextarea.call(baseView.DOMElements.addPostTextarea[0]);
+    autoSizeTextarea.call(baseView.DOMElements.addPostTextarea[1]);
   }
 
   if (baseView.DOMElements.postPhotoInput.files.length > 0) {

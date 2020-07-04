@@ -57,7 +57,7 @@ const askForConfirmation = () => {
 // POSTING COMMENT
 const submitComment = async () => {
   const comment = baseView.DOMElements.commentInput.value;
-  if (comment === '' || comment === null) {
+  if (!comment) {
     return;
   }
 

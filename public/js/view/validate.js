@@ -68,97 +68,89 @@ const toggleInputError = (
 //######################################
 
 // VALIDATING LOGIN FORM
-export const validateLogin = el => {
-  return () => {
-    if (Array.from(el.classList).includes('inputEmail')) {
-      // VALIDATE EMAIL
-      const indexOfAt = el.value.indexOf('@');
-      const lastIndexOfDot = el.value.lastIndexOf('.');
-      if (!el.value) {
-        toggleInputError(el, true, 'Please enter a email');
-        return;
-      }
-      if (
-        el.value &&
-        el.value.includes('@') &&
-        indexOfAt > 2 &&
-        lastIndexOfDot - indexOfAt > 3 &&
-        el.value.length - lastIndexOfDot > 2
-      ) {
-        // EMAIL CONDITIONS :
-        // SHOULD BE ATLEAST 3 LETTERS BEFORE AND AFTER @
-        // SHOULD BE ATLEAST 2 LETTERS AFTER .
-        toggleInputError(el, false);
-      } else {
-        toggleInputError(el, true, 'Please enter a valid email');
-      }
+export const validateLogin = () => {
+  let el = this;
+  if (Array.from(el.classList).includes('inputEmail')) {
+    // VALIDATE EMAIL
+    const indexOfAt = el.value.indexOf('@');
+    const lastIndexOfDot = el.value.lastIndexOf('.');
+    if (!el.value) {
+      toggleInputError(el, true, 'Please enter a email');
+      return;
     }
+    if (
+      el.value &&
+      el.value.includes('@') &&
+      indexOfAt > 2 &&
+      lastIndexOfDot - indexOfAt > 3 &&
+      el.value.length - lastIndexOfDot > 2
+    ) {
+      // EMAIL CONDITIONS :
+      // SHOULD BE ATLEAST 3 LETTERS BEFORE AND AFTER @
+      // SHOULD BE ATLEAST 2 LETTERS AFTER .
+      toggleInputError(el, false);
+    } else {
+      toggleInputError(el, true, 'Please enter a valid email');
+    }
+  }
 
-    // VALIDATE PASSWORD
-    else if (Array.from(el.classList).includes('inputPassword')) {
-      if (
-        baseView.DOMElements.inputPassword.value &&
-        baseView.DOMElements.inputPassword.value.length >= 6
-      ) {
-        toggleInputError(el, false);
-      } else {
-        toggleInputError(el, true, 'Password should be minimum of 6 character');
-      }
+  // VALIDATE PASSWORD
+  else if (Array.from(el.classList).includes('inputPassword')) {
+    if (
+      baseView.DOMElements.inputPassword.value &&
+      baseView.DOMElements.inputPassword.value.length >= 6
+    ) {
+      toggleInputError(el, false);
+    } else {
+      toggleInputError(el, true, 'Password should be minimum of 6 character');
     }
-  };
+  }
 };
+
 //######################################
 
 // VALIDATING EDIT PROFILE FORM
-export const validateEditProfile = el => {
-  return async () => {
-    try {
-      // BASIC VALIDATION, NAME AND ID SHOULD BE OF ATLEAST 3 LETTERS
-      if (el.value.length < 3) {
-        toggleInputError(el, true, 'It should contain atleast 3 letters');
-      } else {
-        // VALIDATING IF USERNAME ALREADY EXIST
-        if (Array.from(el.classList).includes('form__field__input--username')) {
-          // IF THE USERNAME IS NOT CHANGED, THAN RETURN IT
+export const validateEditProfile = async function () {
+  let el = this;
 
-          if (
-            baseView.globalVars.inputUsernameValue &&
-            baseView.globalVars.inputUsernameValue === el.value
-          ) {
-            toggleInputError(el, false);
-            return;
-          }
-          const res = await axios({
-            method: 'GET',
-            url: `/api/v1/users/${el.value}`
-          });
+  try {
+    // BASIC VALIDATION, NAME AND ID SHOULD BE OF ATLEAST 3 LETTERS
+    if (el.value.length < 3) {
+      toggleInputError(el, true, 'It should contain atleast 3 letters');
+    } else {
+      // VALIDATING IF USERNAME ALREADY EXIST
+      if (Array.from(el.classList).includes('form__field__input--username')) {
+        // IF THE USERNAME IS NOT CHANGED, THAN RETURN IT
 
-          // SUCCESS MEANS, USERNAME EXIST
-          if (res.data.status === 'success') {
-            toggleInputError(
-              el,
-              true,
-              'Sorry!! This Username is already taken'
-            );
-            return false;
-          } else {
-            toggleInputError(
-              el,
-              false,
-              'Congress!!! Username available!!',
-              true
-            );
-
-            return true;
-          }
+        if (
+          baseView.globalVars.inputUsernameValue &&
+          baseView.globalVars.inputUsernameValue === el.value
+        ) {
+          toggleInputError(el, false);
+          return;
         }
-        toggleInputError(el, false);
+        const res = await axios({
+          method: 'GET',
+          url: `/api/v1/users/${el.value}`
+        });
 
-        return false;
+        // SUCCESS MEANS, USERNAME EXIST
+        if (res.data.status === 'success') {
+          toggleInputError(el, true, 'Sorry!! This Username is already taken');
+          return false;
+        } else {
+          toggleInputError(el, false, 'Congress!!! Username available!!', true);
+
+          return true;
+        }
       }
-    } catch (err) {
-      customAlert.alertPrimary(err.response.data.message);
+      toggleInputError(el, false);
+
+      return false;
     }
-  };
+  } catch (err) {
+    customAlert.alertPrimary(err.response.data.message);
+  }
 };
+
 //######################################

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const AppError = require('../util/appError');
 const User = require('./userModel');
 
 const postSchema = mongoose.Schema(

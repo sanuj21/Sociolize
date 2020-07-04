@@ -7,9 +7,11 @@ const Post = require('../models/postModel');
 // CONVERTING A STRING ARR TO MONGOOSE OBJECT ID ARR
 const toObjectId = arr => {
   const tempArr = [];
-  for (let i = 0; i < arr.length; i++) {
-    tempArr[i] = mongoose.Types.ObjectId(arr[i]);
-  }
+
+  arr.forEach((el, i) => {
+    tempArr[i] = mongoose.Types.ObjectId(el);
+  });
+
   return tempArr;
 };
 
@@ -73,7 +75,6 @@ exports.getUserProfile = catchAsync(async (req, res, next) => {
   }
 
   const user = await User.findOne({ username: req.params.username });
-  console.log(user);
 
   res.render('myProfile', {
     title: 'Sociolize   ',

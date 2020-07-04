@@ -1,6 +1,5 @@
 const fs = require('fs');
 const { OAuth2Client } = require('google-auth-library');
-const { promisify } = require('util');
 const multer = require('multer');
 const sharp = require('sharp');
 

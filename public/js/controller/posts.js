@@ -138,8 +138,8 @@ const addPostUI = post => {
 
   // SELECTING THE POST AND ATTACHING EVENTS
   const curPost = document.querySelector('.postAdding');
-  curPost.addEventListener('dblclick', postView.handleDblClickPost(curPost));
-  curPost.addEventListener('click', postView.handleClickPost(curPost));
+  curPost.addEventListener('dblclick', postView.handleDblClickPost);
+  curPost.addEventListener('click', postView.handleClickPost);
 };
 
 //#######################################
