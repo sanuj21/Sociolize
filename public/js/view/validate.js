@@ -68,8 +68,9 @@ const toggleInputError = (
 //######################################
 
 // VALIDATING LOGIN FORM
-export const validateLogin = () => {
-  let el = this;
+export const validateLogin = e => {
+  let el = e.target;
+  console.log(e.target);
   if (Array.from(el.classList).includes('inputEmail')) {
     // VALIDATE EMAIL
     const indexOfAt = el.value.indexOf('@');

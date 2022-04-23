@@ -43,7 +43,7 @@ export const login = async (email, password) => {
 
 // SIGNING IN WITH GOOGLE
 export const signup = async (gToken, username) => {
-  username = username.trim();
+  // username = username.trim();
   try {
     let data = {
       username,
